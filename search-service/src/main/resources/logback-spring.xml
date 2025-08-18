@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
+        <graylogHost>localhost</graylogHost>
+        <port>12201</port>
+        <hostName>search-service</hostName>
+        <facility>Search Microservice</facility>
+        <includeFullMdc>true</includeFullMdc>
+        <staticField>source=search-service</staticField>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="GELF"/>
+    </root>
+    <logger name="com.example.search_service" level="INFO" additivity="false">
+        <appender-ref ref="GELF"/>
+    </logger>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.apache.kafka" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
+</configuration>

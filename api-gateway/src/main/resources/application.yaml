@@ -1,0 +1,73 @@
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: false
+spring:
+  application:
+    name: api-gateway
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://identity-service
+          predicates:
+            - Path=/identity/**, /friends/**, /graphql, /oauth2/authorization/**, /address/**
+          filters:
+            - PreserveHostHeader
+        - id: post-service
+          uri: lb://post-service
+          predicates:
+            - Path=/posts/**, /audit/**, /post-shares/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/notifications/**
+        - id: search-service
+          uri:  lb://search-service
+          predicates:
+            - Path=/search/**
+        - id: log-service
+          uri:  lb://log-service
+          predicates:
+            - Path=/logs/**, /ws-logs/**
+        - id: message-service
+          uri: lb://message-service
+          predicates:
+            - Path=/messages/**, /block-message/**, /anonymous-chat/**, /conversations/**, /ws-chat, /ws-chat/**
+        - id: message-service
+          uri: lb://music-service
+          predicates:
+            - Path=/music/**
+        - id: trending-service
+          uri: lb://trending-service
+          predicates:
+            - Path=/trending/**
+        - id: presence-service
+          uri: lb://presence-service
+          predicates:
+            - Path=/presence/**, /ws-presence/**
+identity:
+  service:
+    url: lb://identity-service/identity/validate
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics

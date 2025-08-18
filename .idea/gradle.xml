@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/api-gateway" />
+            <option value="$PROJECT_DIR$/crypto-service" />
+            <option value="$PROJECT_DIR$/eureka-service" />
+            <option value="$PROJECT_DIR$/job-system-social" />
+            <option value="$PROJECT_DIR$/log-service" />
+            <option value="$PROJECT_DIR$/message-service" />
+            <option value="$PROJECT_DIR$/music-service" />
+            <option value="$PROJECT_DIR$/notification-service" />
+            <option value="$PROJECT_DIR$/post-service" />
+            <option value="$PROJECT_DIR$/presence-service" />
+            <option value="$PROJECT_DIR$/search-service" />
+            <option value="$PROJECT_DIR$/trending-service" />
+            <option value="$PROJECT_DIR$/user-service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user-service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/user-service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

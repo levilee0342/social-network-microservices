@@ -1,0 +1,38 @@
+enum SearchType {
+    ALL
+    USER
+    POST
+}
+
+type User {
+    id: ID!
+    username: String!
+    fullName: String
+}
+
+type Post {
+    id: ID!
+    content: String!
+    userId: ID!
+    hashtags: [String]
+    createdAt: String!
+}
+
+type SearchResult {
+    users: [User]
+    posts: [Post]
+    totalCount: Int!
+}
+
+type Query {
+    search(
+        query: String!
+        type: SearchType = ALL
+        limit: Int = 10
+        offset: Int = 0
+    ): SearchResult!
+}
+
+type Mutation {
+    indexPost(id: ID!, content: String!, userId: ID!): Boolean!
+}

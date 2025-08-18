@@ -1,0 +1,102 @@
+server:
+  port: 8081
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: false
+spring:
+  application:
+    name: identity-service
+  data:
+    couchbase:
+      connection-string: couchbases://cb.dxflmrvwbn3gwwl8.cloud.couchbase.com
+      username: adminUserBucket
+      password: Nhom11@Social
+      bucket:
+        name: user_bucket
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+    path: /graphql
+    schema:
+      locations: classpath:graphql/
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: email-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.trusted.packages: com.example.user_service.dto.request.*
+        spring.json.value.default.type: com.example.user_service.dto.request.EmailMessageRequest
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            scope:
+              - openid
+              - profile
+              - email
+            redirect-uri: "http://localhost:8080/api/login/oauth2/code/google"
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
+custom:
+  couchbase:
+    buckets:
+      profile:
+        name: profile_bucket
+        username: ${CB_DB_USERNAME_PROFILE}
+        password: ${CB_DB_PASSWORD_PROFILE}
+      friend:
+        name: friend_bucket
+        username: ${CB_DB_USERNAME_FRIEND}
+        password: ${CB_DB_PASSWORD_FRIEND}
+jwt:
+  secret: ${JWT_SECRET}
+  accessTokenExpiration: 3600000
+  refreshTokenExpiration: 604800000
+logging:
+  level:
+    root: INFO
+    com.example.user_service: DEBUG
+    reactor.netty: DEBUG

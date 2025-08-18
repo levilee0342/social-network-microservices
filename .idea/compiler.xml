@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/common-events/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.34/ec547ef414ab1d2c040118fb9c1c265ada63af14/lombok-1.18.34.jar" />
+        </processorPath>
+        <module name="microservices-system.api-gateway.main" />
+        <module name="microservices-system.music-service.main" />
+        <module name="microservices-system.notification-service.main" />
+        <module name="microservices-system.user-service.main" />
+        <module name="microservices-system.message-service.main" />
+        <module name="microservices-system.trending-service.main" />
+        <module name="microservices-system.presence-service.main" />
+        <module name="microservices-system.post-service.main" />
+        <module name="microservices-system.log-service.main" />
+        <module name="microservices-system.search-service.main" />
+        <module name="microservices-system.job-system-social.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.3.0/2a1542cac159dae637ca984bf95ddef0b0fb2627/spring-boot-configuration-processor-3.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="microservices-system.crypto-service.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="microservices-system.crypto-service.test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17">
+      <module name="common-events" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="microservices-system.api-gateway" options="-parameters" />
+      <module name="microservices-system.api-gateway.main" options="-parameters" />
+      <module name="microservices-system.api-gateway.test" options="-parameters" />
+      <module name="microservices-system.crypto-service" options="-parameters" />
+      <module name="microservices-system.crypto-service.main" options="-parameters" />
+      <module name="microservices-system.crypto-service.test" options="-parameters" />
+      <module name="microservices-system.eureka-service" options="-parameters" />
+      <module name="microservices-system.eureka-service.main" options="-parameters" />
+      <module name="microservices-system.eureka-service.test" options="-parameters" />
+      <module name="microservices-system.log-service" options="-parameters" />
+      <module name="microservices-system.log-service.main" options="-parameters" />
+      <module name="microservices-system.log-service.test" options="-parameters" />
+      <module name="microservices-system.message-service" options="-parameters" />
+      <module name="microservices-system.message-service.main" options="-parameters" />
+      <module name="microservices-system.message-service.test" options="-parameters" />
+      <module name="microservices-system.music-service" options="-parameters" />
+      <module name="microservices-system.music-service.main" options="-parameters" />
+      <module name="microservices-system.music-service.test" options="-parameters" />
+      <module name="microservices-system.notification-service" options="-parameters" />
+      <module name="microservices-system.notification-service.main" options="-parameters" />
+      <module name="microservices-system.notification-service.test" options="-parameters" />
+      <module name="microservices-system.post-service" options="-parameters" />
+      <module name="microservices-system.post-service.main" options="-parameters" />
+      <module name="microservices-system.post-service.test" options="-parameters" />
+      <module name="microservices-system.presence-service" options="-parameters -parameters" />
+      <module name="microservices-system.presence-service.main" options="-parameters -parameters" />
+      <module name="microservices-system.presence-service.test" options="-parameters -parameters" />
+      <module name="microservices-system.search-service" options="-parameters" />
+      <module name="microservices-system.search-service.main" options="-parameters" />
+      <module name="microservices-system.search-service.test" options="-parameters" />
+      <module name="microservices-system.trending-service" options="-parameters" />
+      <module name="microservices-system.trending-service.main" options="-parameters" />
+      <module name="microservices-system.trending-service.test" options="-parameters" />
+      <module name="microservices-system.user-service" options="-parameters -parameters" />
+      <module name="microservices-system.user-service.main" options="-parameters -parameters" />
+      <module name="microservices-system.user-service.test" options="-parameters -parameters" />
+      <module name="user-service" options="-parameters -parameters" />
+      <module name="user-service.main" options="-parameters -parameters" />
+      <module name="user-service.test" options="-parameters -parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,62 @@
+server:
+  port: 8084
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: false
+spring:
+  application:
+    name: search-service
+  data:
+    couchbase:
+      connection-string: ${CB_DB_URL}
+      username: ${CB_DB_USERNAME}
+      password: ${CB_DB_PASSWORD}
+      bucket:
+        name: search_bucket
+    redis:
+      host: localhost
+      port: 6379
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: search-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.example.search_service.dto.*
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+    schema:
+      locations: classpath:graphql/
+    http:
+      path: /graphql
+custom:
+  couchbase:
+    buckets:
+      profile:
+        name: profile_bucket
+        username: ${CB_DB_USERNAME_PROFILE}
+        password: ${CB_DB_PASSWORD_PROFILE}
+      friend:
+        name: friend_bucket
+        username: ${CB_DB_USERNAME_FRIEND}
+        password: ${CB_DB_PASSWORD_FRIEND}
+service:
+  identity:
+    url: lb://identity-service/identity/validate
+  post:
+    url: lb://post-service/posts/search
+  notification:
+    url: lb://notification-service/notifications
+logging:
+  level:
+    root: INFO
+    com.example.search_service: DEBUG

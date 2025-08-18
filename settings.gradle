@@ -1,0 +1,16 @@
+rootProject.name = 'microservices-system'
+
+include 'eureka-service'
+include 'api-gateway'
+include 'user-service'
+include 'post-service'
+include 'notification-service'
+include 'search-service'
+include 'log-service'
+include 'message-service'
+include 'music-service'
+include 'trending-service'
+include 'presence-service'
+include 'crypto-service'
+include 'job-system-social'
+

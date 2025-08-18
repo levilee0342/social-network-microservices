@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <appender name="GELF" class="de.siegmar.logbackgelf.GelfTcpAppender">
+        <graylogHost>localhost</graylogHost>
+        <port>12201</port>
+        <hostName>post-service</hostName>
+        <facility>Post Microservice</facility>
+        <includeFullMdc>true</includeFullMdc>
+        <staticField>source=post-service</staticField>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="GELF"/>
+    </root>
+    <logger name="com.example.post_service" level="INFO" additivity="false">
+        <appender-ref ref="GELF"/>
+    </logger>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.apache.kafka" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+    <logger name="org.apache.tomcat" level="WARN"/>
+    <logger name="org.springframework.cloud.client.loadbalancer" level="ERROR"/>
+    <logger name="org.springframework.boot.devtools.livereload" level="ERROR"/>
+    <logger name="com.netflix.discovery" level="WARN"/>
+    <logger name="com.netflix.eureka" level="WARN"/>
+    <logger name="org.springframework.cloud.netflix.eureka" level="WARN"/>
+    <logger name="org.springframework.boot.autoconfigure" level="ERROR"/>
+    <logger name="reactor.netty" level="ERROR"/>
+    <logger name="com.couchbase.client.core" level="WARN"/>
+    <logger name="com.couchbase.client.dcp" level="WARN"/>
+    <logger name="org.springframework.web" level="WARN"/>
+</configuration>

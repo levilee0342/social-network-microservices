@@ -1,0 +1,226 @@
+input ProfileRequest {
+    fullName: String!
+    dateOfBirth: String
+    address: String
+    phone: String
+    avatarUrl: String
+    gender: Boolean
+    isPublic: Boolean
+}
+
+type ProfileResponse {
+    profileId: String
+    userId: String!
+    fullName: String!
+    dateOfBirth: String
+    address: String
+    phone: String
+    avatarUrl: String
+    gender: Boolean
+    isPublic: Boolean!
+}
+
+type PublicProfileResponse {
+    fullName: String!
+    avatarUrl: String
+}
+
+type Query {
+    getProfileByUserId(userId: String!): PublicProfileResponse
+    getProfilesByUserIds(userIds: [String!]!): [ProfileResponse!]!
+    getProfile: ProfileResponse
+    getAllUsersWithProfile: [ProfileResponse]
+    searchProfiles(
+        fullName: String
+        address: String
+        phone: String
+    ): [ProfileResponse]
+    getProfileDetails: PublicProfileDetailsResponse
+    getPublicProfileDetails(userId: String!): PublicProfileDetailsResponse
+}
+
+type Mutation {
+    createProfile(ProfileRequest: ProfileRequest!): ProfileResponse!
+    updateProfile(ProfileRequest: ProfileRequest!): ProfileResponse!
+    deleteProfile: Boolean!
+
+    createDefaultProfileDetails: PublicProfileDetailsResponse
+    addEducation(request: EducationRequest!): EducationResponse
+    updateEducation(index: Int!, request: EducationRequest!): EducationResponse
+    deleteEducation(index: Int!): Boolean
+
+    addWork(request: WorkRequest!): WorkResponse
+    updateWork(index: Int!, request: WorkRequest!): WorkResponse
+    deleteWork(index: Int!): Boolean
+
+    updateLocation(request: LocationRequest!): LocationResponse
+    deleteLocationField(fieldName: String!): Boolean
+
+    updateContact(request: ContactRequest!): ContactResponse
+    deleteContactField(fieldName: String!, socialKey: String): Boolean
+
+    updateRelationship(request: RelationshipRequest!): RelationshipResponse
+    deleteRelationship: Boolean
+
+    updateDetail(request: DetailRequest!): DetailResponse
+    deleteDetailField(fieldName: String!): Boolean
+
+    addFamilyMember(request: FamilyMemberRequest!): FamilyMemberResponse
+    updateFamilyMember(index: Int!, request: FamilyMemberRequest!): FamilyMemberResponse
+    deleteFamilyMember(index: Int!): Boolean
+}
+
+### ================== PROFILE DETAILS ==================
+type PublicFieldString {
+  value: String
+  isPublic: Boolean
+}
+
+type PublicFieldListString {
+  value: [String]
+  isPublic: Boolean
+}
+
+
+### ================== RESPONSE TYPES ==================
+type PublicProfileDetailsResponse {
+    profileDetailsId: ID
+    userId: String
+
+    education: [EducationResponse]
+    work: [WorkResponse]
+    location: LocationResponse
+    contact: ContactResponse
+    relationship: RelationshipResponse
+    familyMembers: [FamilyMemberResponse]
+    detail: DetailResponse
+
+    createdAt: String
+    updatedAt: String
+}
+
+
+type EducationResponse {
+  schoolName: String
+  major: String
+  startYear: Int
+  endYear: Int
+  graduate: Boolean
+  description: String
+  isPublic: Boolean
+}
+
+type WorkResponse {
+  company: String
+  position: String
+  startDate: String
+  endDate: String
+  description: String
+  isPublic: Boolean
+}
+
+type LocationResponse {
+  currentCity: PublicFieldString
+  hometown: PublicFieldString
+}
+
+type ContactResponse {
+  phone: PublicFieldString
+  email: PublicFieldString
+  website: PublicFieldString
+  socialLinks: [SocialLinkEntry]
+}
+
+type SocialLinkEntry {
+  key: String
+  value: PublicFieldString
+}
+
+type RelationshipResponse {
+  status: String
+  partnerName: String
+  startDate: String
+  isPublic: Boolean
+}
+
+type FamilyMemberResponse {
+  userId: String
+  relationship: String
+  isPublic: Boolean
+}
+
+type DetailResponse {
+  quote: PublicFieldString
+  nickname: PublicFieldString
+  bloodType: PublicFieldString
+  religion: PublicFieldString
+  languages: [PublicFieldString]
+}
+
+### ================== INPUT TYPES ==================
+input PublicFieldStringInput {
+  value: String
+  isPublic: Boolean
+}
+
+input PublicFieldListStringInput {
+  value: [String]
+  isPublic: Boolean
+}
+
+input EducationRequest {
+  schoolName: String
+  major: String
+  startYear: Int
+  endYear: Int
+  graduate: Boolean
+  description: String
+  isPublic: Boolean
+}
+
+input WorkRequest {
+  company: String
+  position: String
+  startDate: String
+  endDate: String
+  description: String
+  isPublic: Boolean
+}
+
+input LocationRequest {
+  currentCity: PublicFieldStringInput
+  hometown: PublicFieldStringInput
+}
+
+input ContactRequest {
+  phone: PublicFieldStringInput
+  email: PublicFieldStringInput
+  website: PublicFieldStringInput
+  socialLinks: [SocialLinkEntryInput]
+}
+
+input SocialLinkEntryInput {
+  key: String
+  value: PublicFieldStringInput
+}
+
+input RelationshipRequest {
+  status: String
+  partnerName: String
+  startDate: String
+  isPublic: Boolean
+}
+
+input FamilyMemberRequest {
+  userId: String
+  relationship: String
+  isPublic: Boolean
+}
+
+input DetailRequest {
+  quote: PublicFieldStringInput
+  nickname: PublicFieldStringInput
+  bloodType: PublicFieldStringInput
+  religion: PublicFieldStringInput
+  languages: [PublicFieldStringInput]
+}
